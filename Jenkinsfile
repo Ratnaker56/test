@@ -20,7 +20,7 @@ pipeline {
                 script {
                     // This command builds the image and tags it with your ECR repository URI
                     // '377733340897.dkr.ecr.us-east-1.amazonaws.com/my-devops-app:latest'
-                    sh 'docker build -t 377733340897.dkr.ecr.us-east-1.amazonaws.com/my-devops-app:latest .'
+                    sh 'docker build -t 377733340897.dkr.ecr.eu-north-1.amazonaws.com/my-devops-app:latest .'
                 }
             }
         }
@@ -31,13 +31,13 @@ pipeline {
             steps {
                 script {
                     // This 'withAWS' block uses the 'aws-creds' you created in Jenkins
-                    withAWS(credentials: 'aws-creds', region: 'us-east-1') {
+                    withAWS(credentials: 'aws-creds', region: 'eu-noth-1') {
                         
                         // Step 3a: Get a login password from AWS ECR
-                        sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 377733340897.dkr.ecr.us-east-1.amazonaws.com'
+                        sh 'aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 377733340897.dkr.ecr.eu-north-1.amazonaws.com'
                         
                         // Step 3b: Push the image
-                        sh 'docker push 377733340897.dkr.ecr.us-east-1.amazonaws.com/my-devops-app:latest'
+                        sh 'docker push 377733340897.dkr.ecr.eu-north-1.amazonaws.com/my-devops-app:latest'
                     }
                 }
             }
