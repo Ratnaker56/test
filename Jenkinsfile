@@ -37,7 +37,7 @@ pipeline {
                         // This is the magic command:
                         // It tells your 'my-app-service' in 'my-cluster' to restart,
                         // forcing it to pull the 'latest' image you just pushed.
-                        sh 'aws ecs update-service --cluster energetic-zebra-z9sgdf --service my-app-service --force-new-deployment'
+                        sh 'aws ecs update-service --cluster energetic-zebra-z9sgdf --service my-app-task-service-l8tj3liw --force-new-deployment'
                     }
                 }
              }
